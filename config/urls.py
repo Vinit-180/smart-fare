@@ -25,7 +25,7 @@ schema_view = get_schema_view(
       title="Pricing Module API",
       default_version='v1',
       description="Calculate dynamic ride pricing based on configs",
-      contact=openapi.Contact(email="admin@example.com"),
+      contact=openapi.Contact(email="vinitchokshi1809@gmail.com"),
    ),
    public=True,
    permission_classes=[permissions.AllowAny],

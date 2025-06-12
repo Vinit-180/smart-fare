@@ -1,0 +1,35 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+
+{% block title %}Pricing Dashboard{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 600px; margin: 40px auto;">
+    <h2>Pricing Dashboard</h2>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="default btn btn-primary">Calculate Price</button>
+    </form>
+
+    {% if result %}
+        <div class="card mt-4">
+            <div class="card-header"><strong>Price Breakdown</strong></div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">Base Price: <strong>{{ result.base_price }}</strong></li>
+                    <li class="list-group-item">Additional Distance Charge: <strong>{{ result.additional_distance_charge }}</strong></li>
+                    <li class="list-group-item">Time Multiplier Charge: <strong>{{ result.time_multiplier_charge }}</strong></li>
+                    <li class="list-group-item">Waiting Charge: <strong>{{ result.waiting_charge }}</strong></li>
+                    <li class="list-group-item">Final Price: <strong>{{ result.final_price }}</strong></li>
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if error %}
+        <div class="alert alert-danger mt-4">{{ error }}</div>
+    {% endif %}
+</div>
+{% endblock %}
